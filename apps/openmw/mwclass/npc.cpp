@@ -577,7 +577,7 @@ namespace MWClass
         if(!weapon.isEmpty())
             weapskill = weapon.getClass().getEquipmentSkill(weapon);
 
-        float hitchance = MWMechanics::getHitChance(ptr, victim, getSkill(ptr, weapskill));
+        // float hitchance = MWMechanics::getHitChance(ptr, victim, getSkill(ptr, weapskill));
 
         //// This would be a case of no damage
         //if (Misc::Rng::roll0to99() >= hitchance)
