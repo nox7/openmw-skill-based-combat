@@ -1,4 +1,7 @@
-OpenMW
+OpenMW - Modified to Remove Dice-Roll Combat
+
+This repository is a version of OpenMW (that attempts to always be in sync with the master) that removes dice-roll combat mechanics. The combat is now based on the weapon skill in the sense that more damage for the weapon is applied in the weapon's damage range based on the skill of that weapon. For example, a weapon that does 1-10 damage with a player having a 50 (long blade) skill for that weapon, would do about 5 or 6 damage.'
+
 ======
 
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/3740/badge.svg)](https://scan.coverity.com/projects/3740) [![pipeline status](https://gitlab.com/OpenMW/openmw/badges/master/pipeline.svg)](https://gitlab.com/OpenMW/openmw/commits/master)
