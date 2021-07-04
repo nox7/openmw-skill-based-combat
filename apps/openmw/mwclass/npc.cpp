@@ -579,17 +579,23 @@ namespace MWClass
 
         float hitchance = MWMechanics::getHitChance(ptr, victim, getSkill(ptr, weapskill));
 
-        if (Misc::Rng::roll0to99() >= hitchance)
-        {
-            othercls.onHit(victim, 0.0f, false, weapon, ptr, osg::Vec3f(), false);
-            MWMechanics::reduceWeaponCondition(0.f, false, weapon, ptr);
-            return;
-        }
+        //// This would be a case of no damage
+        //if (Misc::Rng::roll0to99() >= hitchance)
+        //{
+        //    othercls.onHit(victim, 0.0f, false, weapon, ptr, osg::Vec3f(), false);
+        //    MWMechanics::reduceWeaponCondition(0.f, false, weapon, ptr);
+        //    return;
+        //}
 
         bool healthdmg;
         float damage = 0.0f;
         if(!weapon.isEmpty())
         {
+            // Get the modified skill level of the attacker
+            // Use this to determine the damage an attack will do based on the 
+            // chop/slash/thrust range
+            float skillBasedDamageModifier = getSkill(ptr, weapskill) / 100.0f;
+
             const unsigned char *attack = nullptr;
             if(type == ESM::Weapon::AT_Chop)
                 attack = weapon.get<ESM::Weapon>()->mBase->mData.mChop;
@@ -599,7 +605,14 @@ namespace MWClass
                 attack = weapon.get<ESM::Weapon>()->mBase->mData.mThrust;
             if(attack)
             {
-                damage  = attack[0] + ((attack[1]-attack[0])*attackStrength);
+                
+                // For example, this could be damage range of 1 - 10
+                // If the skill for the weapon was 50, then this would be 5 damage
+                int attackDifference = (attack[1] - attack[0]) * skillBasedDamageModifier;
+
+                // Now, modify the damage by the attack strength (how long the player held the click before releasing)
+                float attackDamage = attack[0] + (attackDifference * attackStrength);
+                damage = attackDamage;
             }
             MWMechanics::adjustWeaponDamage(damage, weapon, ptr);
             MWMechanics::resistNormalWeapon(victim, ptr, weapon, damage);
