@@ -261,14 +261,14 @@ namespace MWClass
 
         osg::Vec3f hitPosition (result.second);
 
-        float hitchance = MWMechanics::getHitChance(ptr, victim, ref->mBase->mData.mCombat);
+        // float hitchance = MWMechanics::getHitChance(ptr, victim, ref->mBase->mData.mCombat);
 
-        if(Misc::Rng::roll0to99() >= hitchance)
+        /*if(Misc::Rng::roll0to99() >= hitchance)
         {
             victim.getClass().onHit(victim, 0.0f, false, MWWorld::Ptr(), ptr, osg::Vec3f(), false);
             MWMechanics::reduceWeaponCondition(0.f, false, weapon, ptr);
             return;
-        }
+        }*/
 
         int min,max;
         switch (type)
