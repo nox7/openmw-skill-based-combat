@@ -11,7 +11,6 @@ namespace ESM
     void Door::load(ESMReader &esm, bool &isDeleted)
     {
         isDeleted = false;
-        mRecordFlags = esm.getRecordFlags();
 
         bool hasName = false;
         while (esm.hasMoreSubs())
@@ -58,7 +57,7 @@ namespace ESM
 
         if (isDeleted)
         {
-            esm.writeHNString("DELE", "", 3);
+            esm.writeHNCString("DELE", "");
             return;
         }
 

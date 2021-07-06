@@ -114,9 +114,8 @@ namespace CSMWorld
     struct ModelColumns : public BaseColumns
     {
         const RefIdColumn *mModel;
-        const RefIdColumn *mPersistence;
 
-        ModelColumns (const BaseColumns& base) : BaseColumns (base), mModel(nullptr), mPersistence(nullptr) {}
+        ModelColumns (const BaseColumns& base) : BaseColumns (base), mModel(nullptr) {}
     };
 
     /// \brief Adapter for IDs with models (all but levelled lists)
@@ -152,9 +151,6 @@ namespace CSMWorld
         if (column==mModel.mModel)
             return QString::fromUtf8 (record.get().mModel.c_str());
 
-        if (column==mModel.mPersistence)
-            return (record.get().mRecordFlags & ESM::FLAG_Persistent) != 0;
-
         return BaseRefIdAdapter<RecordT>::getData (column, data, index);
     }
 
@@ -168,13 +164,6 @@ namespace CSMWorld
         RecordT record2 = record.get();
         if (column==mModel.mModel)
             record2.mModel = value.toString().toUtf8().constData();
-        else if (column==mModel.mPersistence)
-        {
-            if (value.toInt() != 0)
-                record2.mRecordFlags |= ESM::FLAG_Persistent;
-            else
-                record2.mRecordFlags &= ~ESM::FLAG_Persistent;
-        }
         else
         {
             BaseRefIdAdapter<RecordT>::setData (column, data, index, value);

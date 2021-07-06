@@ -463,8 +463,6 @@ namespace MWPhysics
 
     void PhysicsSystem::addObject (const MWWorld::Ptr& ptr, const std::string& mesh, osg::Quat rotation, int collisionType, bool skipAnimated)
     {
-        if (ptr.mRef->mData.mPhysicsPostponed)
-            return;
         osg::ref_ptr<Resource::BulletShapeInstance> shapeInstance = mShapeManager->getInstance(mesh);
         if (!shapeInstance || !shapeInstance->getCollisionShape())
             return;

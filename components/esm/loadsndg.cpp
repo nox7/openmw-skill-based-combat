@@ -54,7 +54,7 @@ namespace ESM
 
         if (isDeleted)
         {
-            esm.writeHNString("DELE", "", 3);
+            esm.writeHNCString("DELE", "");
             return;
         }
 

@@ -22,7 +22,6 @@ struct LevelledListBase
 {
     int mFlags;
     unsigned char mChanceNone; // Chance that none are selected (0-100)
-    unsigned int mRecordFlags;
     std::string mId;
 
     // Record name used to read references. Must be set before load() is

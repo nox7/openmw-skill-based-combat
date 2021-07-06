@@ -26,7 +26,6 @@ struct Book
 
     BKDTstruct mData;
     std::string mName, mModel, mIcon, mScript, mEnchant, mText;
-    unsigned int mRecordFlags;
     std::string mId;
 
     void load(ESMReader &esm, bool &isDeleted);

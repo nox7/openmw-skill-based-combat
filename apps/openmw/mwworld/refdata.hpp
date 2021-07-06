@@ -58,8 +58,6 @@ namespace MWWorld
 
         public:
 
-            bool mPhysicsPostponed;
-
             RefData();
 
             /// @param cellRef Used to copy constant data such as position into this class where it can

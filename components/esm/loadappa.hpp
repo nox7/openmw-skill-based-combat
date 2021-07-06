@@ -36,7 +36,6 @@ struct Apparatus
     };
 
     AADTstruct mData;
-    unsigned int mRecordFlags;
     std::string mId, mModel, mIcon, mScript, mName;
 
     void load(ESMReader &esm, bool &isDeleted);
