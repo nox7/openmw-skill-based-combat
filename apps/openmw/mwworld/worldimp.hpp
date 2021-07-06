@@ -156,7 +156,7 @@ namespace MWWorld
 
             void updateNavigator();
 
-            void updateNavigatorObject(const MWPhysics::Object& object);
+            bool updateNavigatorObject(const MWPhysics::Object* object);
 
             void ensureNeededRecords();
 
