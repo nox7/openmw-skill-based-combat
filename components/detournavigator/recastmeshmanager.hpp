@@ -1,6 +1,7 @@
 #ifndef OPENMW_COMPONENTS_DETOURNAVIGATOR_RECASTMESHMANAGER_H
 #define OPENMW_COMPONENTS_DETOURNAVIGATOR_RECASTMESHMANAGER_H
 
+#include "recastmeshbuilder.hpp"
 #include "oscillatingrecastmeshobject.hpp"
 #include "objectid.hpp"
 #include "version.hpp"
@@ -12,15 +13,11 @@
 #include <list>
 #include <map>
 #include <optional>
-#include <memory>
 
 class btCollisionShape;
 
 namespace DetourNavigator
 {
-    struct Settings;
-    class RecastMesh;
-
     struct RemovedRecastMeshObject
     {
         std::reference_wrapper<const btCollisionShape> mShape;
@@ -64,9 +61,9 @@ namespace DetourNavigator
             Version mNavMeshVersion;
         };
 
-        const Settings& mSettings;
         std::size_t mRevision = 0;
         std::size_t mGeneration;
+        RecastMeshBuilder mMeshBuilder;
         TileBounds mTileBounds;
         std::list<OscillatingRecastMeshObject> mObjectsOrder;
         std::map<ObjectId, std::list<OscillatingRecastMeshObject>::iterator> mObjects;
@@ -74,6 +71,8 @@ namespace DetourNavigator
         std::map<osg::Vec2i, std::list<Water>::iterator> mWater;
         std::optional<Report> mLastNavMeshReportedChange;
         std::optional<Report> mLastNavMeshReport;
+
+        void rebuild();
     };
 }
 
