@@ -30,7 +30,6 @@ struct Potion
     };
     ALDTstruct mData;
 
-    unsigned int mRecordFlags;
     std::string mId, mName, mModel, mIcon, mScript;
     EffectList mEffects;
 

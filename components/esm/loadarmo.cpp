@@ -41,7 +41,6 @@ namespace ESM
     void Armor::load(ESMReader &esm, bool &isDeleted)
     {
         isDeleted = false;
-        mRecordFlags = esm.getRecordFlags();
 
         mParts.mParts.clear();
 
@@ -100,7 +99,7 @@ namespace ESM
 
         if (isDeleted)
         {
-            esm.writeHNString("DELE", "", 3);
+            esm.writeHNCString("DELE", "");
             return;
         }
 

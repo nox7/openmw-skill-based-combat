@@ -47,7 +47,7 @@ namespace ESM
         esm.writeHNCString("NAME", mId);
         if (isDeleted)
         {
-            esm.writeHNString("DELE", "", 3);
+            esm.writeHNCString("DELE", "");
         }
         else
         {

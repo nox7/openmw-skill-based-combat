@@ -42,7 +42,7 @@ void ESM::Filter::save (ESMWriter& esm, bool isDeleted) const
 
     if (isDeleted)
     {
-        esm.writeHNString("DELE", "", 3);
+        esm.writeHNCString("DELE", "");
         return;
     }
 

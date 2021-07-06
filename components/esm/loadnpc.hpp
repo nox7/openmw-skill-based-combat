@@ -116,6 +116,8 @@ struct NPC
     int mBloodType;
     unsigned char mFlags;
 
+    bool mPersistent;
+
     InventoryList mInventory;
     SpellList mSpells;
 
@@ -127,7 +129,6 @@ struct NPC
 
     AIPackageList     mAiPackage;
 
-    unsigned int mRecordFlags;
     std::string mId, mName, mModel, mRace, mClass, mFaction, mScript;
 
     // body parts

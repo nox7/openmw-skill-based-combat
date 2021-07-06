@@ -45,7 +45,6 @@ struct Light
 
     LHDTstruct mData;
 
-    unsigned int mRecordFlags;
     std::string mSound, mScript, mModel, mIcon, mName, mId;
 
     void load(ESMReader &esm, bool &isDeleted);

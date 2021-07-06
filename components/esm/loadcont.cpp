@@ -32,7 +32,6 @@ namespace ESM
     void Container::load(ESMReader &esm, bool &isDeleted)
     {
         isDeleted = false;
-        mRecordFlags = esm.getRecordFlags();
 
         mInventory.mList.clear();
 
@@ -96,7 +95,7 @@ namespace ESM
 
         if (isDeleted)
         {
-            esm.writeHNString("DELE", "", 3);
+            esm.writeHNCString("DELE", "");
             return;
         }
 

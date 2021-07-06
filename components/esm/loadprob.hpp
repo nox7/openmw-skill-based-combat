@@ -25,7 +25,6 @@ struct Probe
     }; // Size = 16
 
     Data mData;
-    unsigned int mRecordFlags;
     std::string mId, mName, mModel, mIcon, mScript;
 
     void load(ESMReader &esm, bool &isDeleted);

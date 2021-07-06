@@ -47,8 +47,6 @@ namespace CSMWorld
 
         virtual RecordBase& getRecord (int index)= 0;
 
-        virtual unsigned int getRecordFlags (int index) const = 0;
-
         virtual void appendRecord (const std::string& id, bool base) = 0;
 
         virtual void insertRecord (RecordBase& record) = 0;
@@ -73,8 +71,6 @@ namespace CSMWorld
         const RecordBase& getRecord (int index) const override;
 
         RecordBase& getRecord (int index) override;
-
-        unsigned int getRecordFlags (int index) const override;
 
         void appendRecord (const std::string& id, bool base) override;
 
@@ -113,12 +109,6 @@ namespace CSMWorld
     RecordBase& RefIdDataContainer<RecordT>::getRecord (int index)
     {
         return mContainer.at (index);
-    }
-
-    template<typename RecordT>
-    unsigned int RefIdDataContainer<RecordT>::getRecordFlags (int index) const
-    {
-        return mContainer.at (index).get().mRecordFlags;
     }
 
     template<typename RecordT>
@@ -219,7 +209,7 @@ namespace CSMWorld
         if (record.isModified() || record.mState == RecordBase::State_Deleted)
         {
             RecordT esmRecord = record.get();
-            writer.startRecord(esmRecord.sRecordId, esmRecord.mRecordFlags);
+            writer.startRecord(esmRecord.sRecordId);
             esmRecord.save(writer, record.mState == RecordBase::State_Deleted);
             writer.endRecord(esmRecord.sRecordId);
         }
@@ -282,8 +272,6 @@ namespace CSMWorld
             const RecordBase& getRecord (const LocalIndex& index) const;
 
             RecordBase& getRecord (const LocalIndex& index);
-
-            unsigned int getRecordFlags(const std::string& id) const;
 
             void appendRecord (UniversalId::Type type, const std::string& id, bool base);
 
